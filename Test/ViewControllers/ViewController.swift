@@ -17,6 +17,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBOutlet weak var btnUpload: UIButton!
     
+    @IBOutlet weak var indicatorUploadProgress: UIActivityIndicatorView!
+    
+    @IBOutlet weak var lblStatus: UILabel!
+    
     // MARK:- Globle Objects
     var imagePicker = UIImagePickerController()
     
@@ -36,6 +40,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.ivTarget.layer.borderWidth = 0.7
         self.ivTarget.layer.cornerRadius = 1.0
         self.ivTarget.layer.masksToBounds = true
+        indicatorUploadProgress.hidden = true
+        lblStatus.text = ""
+        lblStatus.hidden = true
     }
     
     // MARK:- Button Actions
@@ -72,6 +79,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if ivTarget.image != nil {
         let uploader = CLUploader(cloudnary, delegate: self)
             let imageData = UIImagePNGRepresentation(ivTarget.image!)
+            indicatorUploadProgress.startAnimating()
+            indicatorUploadProgress.hidden = false
+            lblStatus.hidden = false
             uploader.upload(imageData, options: [:])
         } else {
             let alert = UIAlertController(title: "Test Application", message: "Please select an image to upload on cloudinary.", preferredStyle: .Alert)
@@ -93,16 +103,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK:- Cloudinary Delegates
     func uploaderSuccess(result: [NSObject : AnyObject]!, context: AnyObject!) {
         let publicID = result["public_id"]
+        indicatorUploadProgress.stopAnimating()
+        indicatorUploadProgress.hidden = true
+        lblStatus.hidden = true
         print("Upload success. Public ID=%@, Full result=%@", publicID, result)
     }
     
     func uploaderError(result: String!, code: Int, context: AnyObject!) {
+        indicatorUploadProgress.stopAnimating()
+        indicatorUploadProgress.hidden = true
+        lblStatus.hidden = true
         print("Upload error: %@, %d", result, code)
 
     }
     
     func uploaderProgress(bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int, context: AnyObject!) {
         print("Upload progress: %d/%d (+%d)", totalBytesWritten, totalBytesExpectedToWrite, bytesWritten);
+        lblStatus.text = String(format: "%d%% Uploaded", ((100*totalBytesWritten)/totalBytesExpectedToWrite))
     }
 }
 

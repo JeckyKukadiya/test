@@ -46,13 +46,30 @@
                                     <action selector="btnUpload_Action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G1U-bZ-gVu"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2u7-Bz-gwq">
+                                <rect key="frame" x="290" y="420" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="MWY-mJ-24L"/>
+                                    <constraint firstAttribute="height" constant="20" id="ZsI-Mv-4KJ"/>
+                                </constraints>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wam-YN-B2H">
+                                <rect key="frame" x="280" y="448" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wam-YN-B2H" firstAttribute="top" secondItem="2u7-Bz-gwq" secondAttribute="bottom" constant="8" id="1DV-66-4V9"/>
                             <constraint firstItem="lsn-sU-B4z" firstAttribute="top" secondItem="S97-c9-lEe" secondAttribute="bottom" constant="20" id="6IB-sj-zRq"/>
+                            <constraint firstItem="2u7-Bz-gwq" firstAttribute="centerX" secondItem="Fe6-J6-N1G" secondAttribute="centerX" id="HpN-gB-EC5"/>
+                            <constraint firstItem="wam-YN-B2H" firstAttribute="centerX" secondItem="Fe6-J6-N1G" secondAttribute="centerX" id="I0k-xY-o38"/>
                             <constraint firstItem="Fe6-J6-N1G" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Iyu-Uo-vMk"/>
                             <constraint firstItem="lsn-sU-B4z" firstAttribute="centerX" secondItem="Fe6-J6-N1G" secondAttribute="centerX" id="PMQ-EU-AQb"/>
                             <constraint firstItem="Fe6-J6-N1G" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="RRW-LM-7Bs"/>
+                            <constraint firstItem="2u7-Bz-gwq" firstAttribute="top" secondItem="lsn-sU-B4z" secondAttribute="bottom" constant="8" id="gPv-7b-CvU"/>
                             <constraint firstItem="S97-c9-lEe" firstAttribute="centerX" secondItem="Fe6-J6-N1G" secondAttribute="centerX" id="mmp-Mu-Tyo"/>
                             <constraint firstItem="S97-c9-lEe" firstAttribute="top" secondItem="Fe6-J6-N1G" secondAttribute="bottom" constant="25" id="mrh-6u-ZgR"/>
                         </constraints>
@@ -60,7 +77,9 @@
                     <connections>
                         <outlet property="btnChooseImage" destination="S97-c9-lEe" id="jQM-X6-nSa"/>
                         <outlet property="btnUpload" destination="lsn-sU-B4z" id="UMg-uj-hOi"/>
+                        <outlet property="indicatorUploadProgress" destination="2u7-Bz-gwq" id="Eyj-dw-4Uf"/>
                         <outlet property="ivTarget" destination="Fe6-J6-N1G" id="tit-vz-miu"/>
+                        <outlet property="lblStatus" destination="wam-YN-B2H" id="nWb-Dl-tDf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
